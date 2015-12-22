@@ -1,0 +1,7 @@
+---
+# Constants for mpd
+
+# MPD port and bind address is handled by systemd and 
+# hardcoded in the .system and .socket files
+mpd_port:               "6600"
+mpd_bind_to_address:    "0.0.0.0"

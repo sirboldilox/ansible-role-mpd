@@ -1,0 +1,21 @@
+---
+# Tasks for mpd
+
+- name: Install the mpd package for Debian derivatives
+  apt:
+    name:   mpd
+    state:  installed
+
+- name: Install the mpc package for Debian derivatives
+  apt:
+    name:   mpc
+    state:  installed
+
+- name: Copy system mpd configuration
+  template:
+    src:    mpd.conf.j2
+    dest:   /etc/mpd.conf
+    backup: yes
+    owner:  "{{ mpd_user }}"
+    group:  "{{ mpd_group }}"
+  notify: restart mpd

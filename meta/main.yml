@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Matt Parker
+  description: MPD ansible role
+  license: license MIT
+  min_ansible_version: 1.2
+
+  platforms:
+    - name: debian
+      versions:
+        - jessie
+
+dependencies: []
+
