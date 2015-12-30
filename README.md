@@ -1,12 +1,14 @@
 Ansible MPD
 ===========
 
-An Ansible role to manage [MPD](http://musicpd.org)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-mpd-blue.svg)](https://galaxy.ansible.com/list#/roles/6633)
 
-- Installs mpd and mpc
+An Ansible role to manage [MPD](http://musicpd.org) on debian systems.
+
+- Installs mpd and mpc.
 - Configures mpd.
 
-Variables
+Default variables
 ---------
 
 ```yaml
@@ -24,8 +26,6 @@ mpd_pid_file:           "/run/mpd/pid"
 # General music daemon options
 mpd_user:               "mpd"
 mpd_group:              "audio"
-mpd_port:               "6600"
-mpd_bind_to_address:    "0.0.0.0"
 
 # Audio devices (Default Null device)
 mpd_audio_devices: 
@@ -36,13 +36,13 @@ mpd_audio_devices:
 Example Playbook
 ----------------
 
-Basic playbook with pulse audio backend 
+Basic playbook with pulse audio backend
 
 ```yaml
 - hosts: all
 
   roles:
-     mpd:
+     sirboldilox.mpd:
 
   vars:
     - mpd_music_directory: "/media/music"
