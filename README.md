@@ -9,7 +9,7 @@ An Ansible role to manage [MPD](http://musicpd.org) on debian systems.
 - Configures mpd.
 
 Default variables
----------
+-----------------
 
 ```yaml
 # Default settings for mpd
@@ -33,6 +33,15 @@ mpd_audio_devices:
     type:   "null"
 ```
 
+Additional variables
+--------------------
+
+```yaml
+
+# Database plugins
+mpd_db_plugin
+```
+
 Example Playbook
 ----------------
 
@@ -42,13 +51,37 @@ Basic playbook with pulse audio backend
 - hosts: all
 
   roles:
-     sirboldilox.mpd:
+     sirboldilox.mpd
 
   vars:
     - mpd_music_directory: "/media/music"
     - mpd_audio_device:
         - name: "Pulse Audio"
-        - type: "pulse"
+          type: "pulse"
+```
+
+A more advanced playbook using a proxy database and HTTP stream
+
+```yaml
+- hosts: all
+
+  roles:
+    sirboldilox.mpd
+
+  vars:
+    - mpd_music_directory: "/media/music"
+    - mpd_db_plugin:
+        plugin: "proxy"
+        host:   "nas"
+        port:   "6600"
+
+    - mpd_audio_device:
+        - name:     "HTTP stream"
+          type:     "httpd"
+          encoder:  "lame"
+          port:     "8081"
+          bitrate:  "256"
+          tags:     "yes"
 ```
 
 License

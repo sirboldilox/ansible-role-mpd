@@ -4,7 +4,9 @@
 # Files and directories
 music_directory     "{{ mpd_music_directory     }}"
 playlist_directory  "{{ mpd_playlist_directory  }}"
+{% if mpd_db_plugin is not defined %}
 db_file             "{{ mpd_db_file             }}"
+{% endif %}
 state_file          "{{ mpd_state_file          }}"
 sticker_file        "{{ mpd_sticker_file        }}"
 log_file            "{{ mpd_log_file            }}"
@@ -15,6 +17,15 @@ user                "{{ mpd_user            }}"
 group               "{{ mpd_group           }}"
 port                "{{ mpd_port            }}"
 bind_to_address     "{{ mpd_bind_to_address }}"
+
+{% if mpd_db_plugin is defined  %}
+# Database plugin
+database {
+  {% for k, v in mpd_db_plugin.iteritems()|sort %}
+    {{ k }}  "{{ v }}"
+  {% endfor %}
+}
+{% endif %}
 
 # Auto devices
 {% for dev in mpd_audio_devices %}
